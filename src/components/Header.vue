@@ -2,7 +2,7 @@
   <div>
     <button v-if="!store.loggedIn">
       <router-link to="/register">
-        Register
+        Registration
       </router-link>
     </button>
     <button v-if="!store.loggedIn">
@@ -10,7 +10,7 @@
         Sign In
       </router-link>
     </button>
-    <button @click="signOut" v-if="store.loggedIn">
+    <button v-if="store.loggedIn">
       Sign Out
     </button>
   </div>
