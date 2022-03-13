@@ -1,13 +1,8 @@
 <template>
-  <div>
-    Join Room
-    <br>
-    <button>
-      <router-link to='/create_room'>Create Room</router-link>
-    </button>
+  <div class="center join_room_flex">
     <input v-model="roomToken" placeholder="Room Token" type="text" />
     <button>
-      Enter
+      Join Room
     </button>
   </div>
 </template>
@@ -26,6 +21,13 @@ export default {
 </script>
 
 <style scoped>
+
+.join_room_flex {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+}
+
 div a {
   color: white;
 }

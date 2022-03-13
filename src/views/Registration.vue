@@ -1,10 +1,12 @@
 <template>
-  <div>
-    <input v-model="username" placeholder="username" type="text" />
-    <input v-model="password" placeholder="password" type="password" />
+  <div class="center auth_flex">
+    <input v-model="username" placeholder="Username" type="text" />
+    <input v-model="password" placeholder="Password" type="password" />
+  
     <button>
-      Register
+      Register Your Account
     </button>
+  
   </div>
 </template>
 

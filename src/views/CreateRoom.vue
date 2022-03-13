@@ -1,13 +1,9 @@
 <template>
-  <div>
-    Create Room
-    <br>
-    <button>
-      <router-link to='/join_room'>Join Room</router-link>
-    </button>
+  <div class="center create_room_flex">
     Some information or settings
+    <br>  
     <button>
-      Enter
+      Create Room
     </button>
   </div>
 </template>
@@ -27,6 +23,13 @@ export default {
 
 
 <style scoped>
+.create_room_flex {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  gap: 10px;
+}
+
 div a {
   color: white;
 }

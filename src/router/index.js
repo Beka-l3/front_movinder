@@ -1,15 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import App from '../App.vue';
 import Registration from '../views/Registration.vue';
 import SignIn from '../views/SignIn.vue';
 import JoinRoom from '../views/JoinRoom.vue';
 import CreateRoom from '../views/CreateRoom.vue';
+import Home from '../views/Home.vue';
+import PickMovie from '../views/PickMovie';
+import MovieRatings from '../views/MovieRatings';
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: App
+    component: Home
   },
   {
     path: '/register',
@@ -30,6 +32,16 @@ const routes = [
     path: '/create_room',
     name: 'Create Room',
     component: CreateRoom
+  },
+  {
+    path: '/pick_movie',
+    name: 'Pick Movie',
+    component: PickMovie
+  },
+  {
+    path: '/movie_ratings',
+    name: 'Movie Ratings',
+    component: MovieRatings
   }
 ];
 

@@ -1,18 +1,30 @@
 <template>
-  <div>
-    <button v-if="!store.loggedIn">
-      <router-link to="/register">
-        Registration
+  <div class="header_flex">
+    <div class="room_flex">
+      <router-link to="/join_room">
+        Join Room
       </router-link>
-    </button>
-    <button v-if="!store.loggedIn">
-      <router-link to="/sign_in">
+      <router-link to="/pick_movie">
+        Back To Movies
+      </router-link>
+      <router-link to="/movie_ratings">
+        Movie Ratings
+      </router-link>
+      <router-link to="/create_room">
+        Create Room
+      </router-link>
+    </div>
+    <div class="header_auth_flex">
+      <router-link v-if="!store.loggedIn" to="/register">
+        Register
+      </router-link>
+      <router-link v-if="!store.loggedIn" to="/sign_in">
         Sign In
       </router-link>
-    </button>
-    <button v-if="store.loggedIn">
-      Sign Out
-    </button>
+      <router-link to="/">
+        Sign Out
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -45,6 +57,28 @@ export default {
 
 div a {
   color: white;
+}
+
+.header_flex {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.room_flex {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding-left: 35%;
+}
+
+.header_auth_flex {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding-right: 10px;
 }
 
 </style>
