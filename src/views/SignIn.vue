@@ -3,7 +3,7 @@
     <input v-model="username" placeholder="Username" type="text" />
     <input v-model="password" placeholder="Password" type="password" />
     
-    <button>
+    <button @click="login">
       Login to Your Account
     </button>
     
@@ -11,12 +11,35 @@
 </template>
 
 <script>
+import axios from 'axios';
+import { store } from '../store.js';
 
 export default {
   name: 'SignIn',
   data(){
     return {
-
+      store,
+      username: "",
+      password: "",
+      backendURL: "https://httpbin.org"
+    }
+  },
+  methods: {
+    async login(){
+      let headers = {
+        "username": this.username,
+        "password": this.password  
+      };
+      let response = await axios.get(this.backendURL, { headers });
+      let token = response.data.user;
+      headers = {
+        Authorization: `Bearer ${token}`
+      };
+      //console.log(headers);
+      response = await axios.get(this.backendURL + '/bearer', { headers });
+      //console.log(response);
+      this.store.logIn();
+      this.$router.push({name: 'Join Room'});
     }
   }
 }
