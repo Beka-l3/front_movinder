@@ -7,6 +7,9 @@ import Home from '../views/Home.vue';
 import PickMovie from '../views/PickMovie';
 import MovieRatings from '../views/MovieRatings';
 
+
+import { store } from '../store.js';
+
 const routes = [
   {
     path: '/',
@@ -21,27 +24,40 @@ const routes = [
   {
     path: '/sign_in',
     name: 'Sign In',
-    component: SignIn
+    component: SignIn,
+    beforeEnter: () => {
+      console.log(store.loggedIn);
+      if (store.loggedIn) return false;
+    }
   },
   {
     path: '/join_room',
     name: 'Join Room',
-    component: JoinRoom
+    component: JoinRoom,
   },
   {
     path: '/create_room',
     name: 'Create Room',
-    component: CreateRoom
+    component: CreateRoom,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/pick_movie',
     name: 'Pick Movie',
-    component: PickMovie
+    component: PickMovie,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/movie_ratings',
     name: 'Movie Ratings',
-    component: MovieRatings
+    component: MovieRatings,
+    meta: {
+      requiresAuth: true
+    }
   }
 ];
 

@@ -1,16 +1,16 @@
 <template>
   <div class="header_flex">
     <div class="room_flex">
-      <router-link to="/join_room">
+      <router-link v-if="store.loggedIn" to="/join_room">
         Join Room
       </router-link>
-      <router-link to="/pick_movie">
+      <router-link v-if="store.loggedIn" to="/pick_movie">
         Back To Movies
       </router-link>
-      <router-link to="/movie_ratings">
+      <router-link v-if="store.loggedIn" to="/movie_ratings">
         Movie Ratings
       </router-link>
-      <router-link to="/create_room">
+      <router-link v-if="store.loggedIn" to="/create_room">
         Create Room
       </router-link>
     </div>
@@ -21,9 +21,9 @@
       <router-link v-if="!store.loggedIn" to="/sign_in">
         Sign In
       </router-link>
-      <router-link to="/">
+      <button @click="signOut" v-if="store.loggedIn">
         Sign Out
-      </router-link>
+      </button>
     </div>
   </div>
 </template>

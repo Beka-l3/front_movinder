@@ -1,15 +1,16 @@
 <template>
   <div class="pick_movie_flex">
     <div>
-      <button class="buttons">
+      <button class="buttons" @click="rateMovie(false)">
         Dislike
       </button>
     </div>
     <div>
       <img src="../assets/sample_poster.jpg">
+      <!-- <img src="currentMovie"> -->
     </div>
     <div>
-      <button class="buttons">
+      <button class="buttons" @click="rateMovie(true)">
         Like
       </button>
     </div>
@@ -22,9 +23,20 @@ export default {
   name: 'Pick Movie',
   data(){
     return {
-      
+      curMovie: null,
     }
-  }
+  },
+  methods: {
+    rateMovie(liked){
+      //sendToBackend(curMovie, liked)
+    }
+  },
+  mounted(){
+    //if state is now entered
+    //curMovie = getMovie();
+    //if state is currently selecting
+    //curMovie = retrieveFromState()
+  },
 }
 
 </script>
