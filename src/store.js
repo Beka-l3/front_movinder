@@ -10,7 +10,7 @@ export const store = new Vuex.Store({
     authToken: "string",
     roomSlug: "string",
 
-    justEntered: null,
+    justEntered: false,
     roomCreator: false,
 
     curMovie: {
@@ -37,10 +37,10 @@ export const store = new Vuex.Store({
   plugins: [createPersistedState()],
   mutations: {
     alreadyRated(state){
-      state.justEntered = true;
+      state.justEntered = false;
     },
     justEntered(state){
-      state.justEntered = false;
+      state.justEntered = true;
     },
     loggedIn(state){
       state.authorized = true;

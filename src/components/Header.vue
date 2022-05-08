@@ -30,14 +30,12 @@
 
 <script>
 import { store } from '../store.js';
-import { useRouter } from "vue-router";
 
 export default {
   name: 'Header',
   data(){
     return {
       store,
-      useRouter,
     }
   },
   methods: {

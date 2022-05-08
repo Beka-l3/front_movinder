@@ -1,22 +1,22 @@
 <template>
   <div class="movie_list_item_flex">
-    <img src="../assets/sample_poster.jpg">
+    <img :src="movieInfo.posterUrl">
     <div class="movie_desc_container">
       <ul class="movie_list_item_desc">
         <li>
-          {{ title }}
+          {{ movieInfo.name }}
         </li>
         <li>
-          {{ prod }}
+          {{ movieInfo.description }}
         </li>
         <li>
-          {{ year }}
+          {{ movieInfo.genres }}
         </li>
         <li>
-          {{ rating }}
+          {{ movieInfo.rating }}
         </li>
         <li>
-          {{ votes }}
+          Likes: {{ ranking.likedUsers.length }}
         </li>
       </ul>
     </div>
@@ -24,17 +24,48 @@
 </template>
 
 <script>
+import axios from 'axios';
 
 export default {
+  props: ["ranking"],
   name: 'Movie List Item',
   data(){
     return {
-      title: "Title: Avangard",
+      title: "string",
       prod: "Prod: James Cameron",
       year: "Year: 2022",
       rating: "Rating: 10.0",
-      votes: "Votes: inf/inf"
+      votes: "Votes: inf/inf",
+      movieInfo: {
+        id: "string",
+        name: "string",
+        posterUrl: "../assets/sample_poster.jpg",
+        description: "string",
+        rating: {
+          kinopoisk: 0,
+          imdb: 0,
+          tmdb: 0,
+        },
+        genres: [
+          "string",
+        ],
+        actors: [
+          {
+            name: "string",
+            photoUrl: "string",
+          },
+        ],
+      },
+      backendUrl: "http://localhost:8080/movies/" + this.ranking.movieId,
     }
+  },
+  async mounted(){
+    console.log(this.ranking);
+    let headers = {
+      'Authorization': `Bearer ${this.$store.state.authToken}`,
+    }
+    let response = await axios.get(this.backendUrl, { headers });
+    this.movieInfo = response.data;
   }
 }
 

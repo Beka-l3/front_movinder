@@ -6,6 +6,7 @@ import CreateRoom from '../views/CreateRoom.vue';
 import Home from '../views/Home.vue';
 import PickMovie from '../views/PickMovie';
 import MovieRatings from '../views/MovieRatings';
+import WaitingRoom from '../views/WaitingRoom';
 
 
 import { store } from '../store.js';
@@ -51,6 +52,14 @@ const routes = [
     path: '/movie_ratings',
     name: 'Movie Ratings',
     component: MovieRatings,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/waiting_room',
+    name: 'Waiting Room',
+    component: WaitingRoom,
     meta: {
       requiresAuth: true
     }

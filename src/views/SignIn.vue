@@ -32,7 +32,7 @@ export default {
       };
       let response = await axios.post(this.backendURL, headers);
       let token = response.data.token;
-      this.$store.commit('updateAuthToken', 'Bearer ' + token);
+      this.$store.commit('updateAuthToken', token);
       this.$store.commit('loggedIn');
       //console.log(this.$store.state.authToken);
       

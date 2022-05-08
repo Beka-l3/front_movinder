@@ -2,16 +2,16 @@
   <div class="pick_movie_flex">
     <div>
       <button class="buttons" @click="likeMovie()">
-        Dislike
+        Like
       </button>
     </div>
     <div>
-      <img src="../assets/sample_poster.jpg">
+      <img :src="curMovie.posterUrl">
       <!-- <img src="currentMovie"> -->
     </div>
     <div>
-      <button class="buttons" @click="dislikeMovie()">
-        Like
+      <button class="buttons" @click="nextMovie()">
+        Dislike
       </button>
     </div>
   </div>
@@ -19,7 +19,6 @@
 
 <script>
 import axios from 'axios';
-import { store } from '../store.js';
 
 export default {
   name: 'Pick Movie',
@@ -45,17 +44,43 @@ export default {
           },
         ],
       },
+      roomSlug: "string",
+      backendUrl: "http://localhost:8080/room/",
+      curMovieId: "string",
     }
   },
   methods: {
-    likeMovie(){
-      
+    async likeMovie(){
+      let data = {
+        'movieId': this.curMovie.id,
+      };
+      let headers = {
+        'Authorization': `Bearer ${this.$store.state.authToken}`,
+      };
+      let response = await axios.post(this.backendUrl + this.roomSlug + "/like", data, { headers });
+      console.log(response);
+      this.nextMovie();
     },
-    dislikeMovie(){
-      
+    async nextMovie(){
+      let headers = {
+        'Authorization': `Bearer ${this.$store.state.authToken}`,
+      }
+      let response = await axios.get(this.backendUrl + this.roomSlug + "/recommend", { headers });
+      this.curMovie = response.data;
+      this.$store.commit('updateMovie', this.curMovie);
+      console.log(response);
     }
   },
-  mounted(){
+  async mounted(){
+    this.roomSlug = this.$store.state.roomSlug;
+    console.log(this.$store.state.justEntered);
+    if (this.$store.state.justEntered){
+      this.$store.commit("alreadyRated");
+      this.nextMovie();
+    }
+    else {
+      this.curMovie = this.$store.state.curMovie;
+    }
     //if state is now entered
     //curMovie = getMovie();
     //if state is currently selecting
