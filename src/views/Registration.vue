@@ -11,23 +11,24 @@
 </template>
 
 <script>
-//import axios from 'axios';
+import axios from 'axios';
 
 export default {
   name: 'Registration',
   data(){
     return {
-      
+      username: "",
+      password: "", 
+      backendURL: "http://localhost:8080/user/register",
     }
   },
   methods: {
-    register(){
-        /*let headers = {
+    async register(){
+        let headers = {
           "username": this.username,
           "password": this.password  
         };
-        let response = await axios.get(this.backendURL, { headers });*/
-
+        let response = await axios.post(this.backendURL, headers);
         this.$router.push({name: 'Sign In'});
       }
   }

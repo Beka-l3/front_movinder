@@ -25,10 +25,6 @@ const routes = [
     path: '/sign_in',
     name: 'Sign In',
     component: SignIn,
-    beforeEnter: () => {
-      console.log(store.loggedIn);
-      if (store.loggedIn) return false;
-    }
   },
   {
     path: '/join_room',
@@ -64,6 +60,15 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes: routes
+});
+
+router.beforeEach(async (to) => {
+  let authorized = store.state.authorized;
+  if (!authorized && (to.name == 'Join Room' || to.name == 'Create Room' || to.name == 'Pick Movie' || to.name == 'Movie Ratings')){
+    return {
+      name: 'Sign In'
+    }
+  }
 });
 
 export default router;

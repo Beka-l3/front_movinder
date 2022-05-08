@@ -1,7 +1,7 @@
 <template>
   <div class="pick_movie_flex">
     <div>
-      <button class="buttons" @click="rateMovie(false)">
+      <button class="buttons" @click="likeMovie()">
         Dislike
       </button>
     </div>
@@ -10,7 +10,7 @@
       <!-- <img src="currentMovie"> -->
     </div>
     <div>
-      <button class="buttons" @click="rateMovie(true)">
+      <button class="buttons" @click="dislikeMovie()">
         Like
       </button>
     </div>
@@ -18,17 +18,41 @@
 </template>
 
 <script>
+import axios from 'axios';
+import { store } from '../store.js';
 
 export default {
   name: 'Pick Movie',
   data(){
     return {
-      curMovie: null,
+      curMovie: {
+        id: "string",
+        name: "string",
+        posterUrl: "../assets/sample_poster.jpg",
+        description: "string",
+        rating: {
+          kinopoisk: 0,
+          imdb: 0,
+          tmdb: 0,
+        },
+        genres: [
+          "string",
+        ],
+        actors: [
+          {
+            name: "string",
+            photoUrl: "string",
+          },
+        ],
+      },
     }
   },
   methods: {
-    rateMovie(liked){
-      //sendToBackend(curMovie, liked)
+    likeMovie(){
+      
+    },
+    dislikeMovie(){
+      
     }
   },
   mounted(){

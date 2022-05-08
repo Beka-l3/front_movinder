@@ -1,27 +1,27 @@
 <template>
   <div class="header_flex">
     <div class="room_flex">
-      <router-link v-if="store.loggedIn" to="/join_room">
+      <router-link v-if="$store.state.authorized" to="/join_room">
         Join Room
       </router-link>
-      <router-link v-if="store.loggedIn" to="/pick_movie">
+      <router-link v-if="$store.state.authorized" to="/pick_movie">
         Back To Movies
       </router-link>
-      <router-link v-if="store.loggedIn" to="/movie_ratings">
+      <router-link v-if="$store.state.authorized" to="/movie_ratings">
         Movie Ratings
       </router-link>
-      <router-link v-if="store.loggedIn" to="/create_room">
+      <router-link v-if="$store.state.authorized" to="/create_room">
         Create Room
       </router-link>
     </div>
     <div class="header_auth_flex">
-      <router-link v-if="!store.loggedIn" to="/register">
+      <router-link v-if="!$store.state.authorized" to="/register">
         Register
       </router-link>
-      <router-link v-if="!store.loggedIn" to="/sign_in">
+      <router-link v-if="!$store.state.authorized" to="/sign_in">
         Sign In
       </router-link>
-      <button @click="signOut" v-if="store.loggedIn">
+      <button @click="signOut" v-if="$store.state.authorized">
         Sign Out
       </button>
     </div>
@@ -41,11 +41,9 @@ export default {
     }
   },
   methods: {
-    signIn(){
-      this.store.logIn();
-    },
     signOut(){
-      this.store.logOut();
+      this.$store.commit('loggedOut');
+      this.$router.push('/');
     }
   }
 }

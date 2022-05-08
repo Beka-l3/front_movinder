@@ -1,20 +1,38 @@
-import { keyFor } from 'core-js/fn/symbol';
 import Vuex from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
 
 
 //const authState = ref(false);
 
-const store = new Vuex.store({
+export const store = new Vuex.Store({
   state: {
-    justEntered: null,
+    authorized: false,
+    authToken: "string",
+    roomSlug: "string",
 
-    curImg: null,
-    curTitle: null,
-    curYear: null,
-    curRating: null,
-    curVotesFor: null,
-    curVotesAgainst: null,
+    justEntered: null,
+    roomCreator: false,
+
+    curMovie: {
+      id: "string",
+      name: "string",
+      posterUrl: "../assets/sample_poster.jpg",
+      description: "string",
+      rating: {
+        kinopoisk: 0,
+        imdb: 0,
+        tmdb: 0,
+      },
+      genres: [
+        "string",
+      ],
+      actors: [
+        {
+          name: "string",
+          photoUrl: "string",
+        },
+      ],
+    },
   },
   plugins: [createPersistedState()],
   mutations: {
@@ -24,33 +42,55 @@ const store = new Vuex.store({
     justEntered(state){
       state.justEntered = false;
     },
-    curImgUpdate(state, newImg){
-      state.curImg = newImg;
+    loggedIn(state){
+      state.authorized = true;
     },
-    curTitleUpdate(state, newTitle){
-      state.curTitle = newTitle;
+    loggedOut(state){
+      state.authorized = false;
     },
-    curYearUpdate(state, newYear){
-      state.curYear = newYear;
+    updateAuthToken(state, authToken){
+      state.authToken = authToken;
     },
-    curRatingUpdate(state, newRating){
-      state.curRating = newRating;
+    updateRoomSlug(state, roomSlug){
+      state.roomSlug = roomSlug;
+    }, 
+  
+    updateMovie(state, movie){
+      state.curMovie = movie;
     },
-    curVotesForUpdate(state, newVotesFor){
-      state.curVotesFor = newVotesFor;
+    /*
+    updateId(state, id){
+      state.id = id;
     },
-    curVotesAgainstUpdate(state, newVotesAgainst){
-      state.curVotesAgainst = newVotesAgainst;
-    }
+    updateName(state, name){
+      state.name = name;
+    },
+    updatePosterUrl(state, posterUrl){
+      state.posterUrl = posterUrl;
+    },
+    updateDescription(state, description){
+      state.description = description;
+    },
+    updateRating(state, rating){
+      state.rating = rating;
+    },
+    updateGenres(state, genres){
+      state.genres = genres;
+    },
+    updateActors(state, actors){
+      state.actors = actors;
+    },*/
+    
   },
   actions: {
     nextMovie({ commit }, movie){
-      commit('curImgUpdate', movie.img);
+      commit('updateMovie', movie);
+      /*commit('curImgUpdate', movie.img);
       commit('curTitleUpdate', movie.title);
       commit('curYearUpdate', movie.year);
       commit('curRatingUpdate', movie.rating);
       commit('curVotesForUpdate', movie.votesFor);
-      commit('curVotesAgainstUpdate', movie.votesAgainst);
+      commit('curVotesTotalUpdate', movie.votesTotal);*/
     }
   }
 });

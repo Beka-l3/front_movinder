@@ -21,7 +21,7 @@ export default {
       store,
       username: "",
       password: "",
-      backendURL: "https://httpbin.org"
+      backendURL: "http://localhost:8080/user/login",
     }
   },
   methods: {
@@ -30,15 +30,12 @@ export default {
         "username": this.username,
         "password": this.password  
       };
-      let response = await axios.get(this.backendURL, { headers });
-      let token = response.data.user;
-      headers = {
-        Authorization: `Bearer ${token}`
-      };
-      //console.log(headers);
-      response = await axios.get(this.backendURL + '/bearer', { headers });
-      //console.log(response);
-      this.store.logIn();
+      let response = await axios.post(this.backendURL, headers);
+      let token = response.data.token;
+      this.$store.commit('updateAuthToken', 'Bearer ' + token);
+      this.$store.commit('loggedIn');
+      //console.log(this.$store.state.authToken);
+      
       this.$router.push({name: 'Join Room'});
     }
   }
