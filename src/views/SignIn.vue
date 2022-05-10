@@ -21,7 +21,7 @@ export default {
       store,
       username: "",
       password: "",
-      backendURL: "http://localhost:8080/user/login",
+      backendUrl: "http://localhost:8080/user/login",
     }
   },
   methods: {
@@ -30,11 +30,11 @@ export default {
         "username": this.username,
         "password": this.password  
       };
-      let response = await axios.post(this.backendURL, headers);
+      let response = await axios.post(this.backendUrl, headers);
       let token = response.data.token;
       this.$store.commit('updateAuthToken', token);
       this.$store.commit('loggedIn');
-      //console.log(this.$store.state.authToken);
+      console.log(this.$store.state.authToken);
       
       this.$router.push({name: 'Join Room'});
     }

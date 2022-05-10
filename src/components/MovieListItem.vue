@@ -60,7 +60,7 @@ export default {
     }
   },
   async mounted(){
-    console.log(this.ranking);
+    //console.log(this.ranking);
     let headers = {
       'Authorization': `Bearer ${this.$store.state.authToken}`,
     }

@@ -6,9 +6,12 @@ import createPersistedState from 'vuex-persistedstate';
 
 export const store = new Vuex.Store({
   state: {
+    waiting: false,
     authorized: false,
     authToken: "string",
     roomSlug: "string",
+
+    creator: false,
 
     justEntered: false,
     roomCreator: false,
@@ -36,6 +39,15 @@ export const store = new Vuex.Store({
   },
   plugins: [createPersistedState()],
   mutations: {
+    isWaitingRoom(state, boolean){
+      state.waiting = boolean;
+    },
+    isCreator(state){
+      state.creator = true;
+    },
+    isJoiner(state){
+      state.creator = false;
+    },
     alreadyRated(state){
       state.justEntered = false;
     },

@@ -19,7 +19,7 @@ export default {
     return {
       username: "",
       password: "", 
-      backendURL: "http://localhost:8080/user/register",
+      backendUrl: "http://localhost:8080/user/register",
     }
   },
   methods: {
@@ -28,7 +28,7 @@ export default {
           "username": this.username,
           "password": this.password  
         };
-        let response = await axios.post(this.backendURL, headers);
+        let response = await axios.post(this.backendUrl, headers);
         this.$router.push({name: 'Sign In'});
       }
   }

@@ -19,6 +19,7 @@
 
 <script>
 import axios from 'axios';
+import { Client, Message } from '@stomp/stompjs';
 
 export default {
   name: 'Pick Movie',
@@ -45,6 +46,7 @@ export default {
         ],
       },
       roomSlug: "string",
+      roomId: "string",
       backendUrl: "http://localhost:8080/room/",
       curMovieId: "string",
     }
@@ -73,7 +75,49 @@ export default {
   },
   async mounted(){
     this.roomSlug = this.$store.state.roomSlug;
-    console.log(this.$store.state.justEntered);
+    let headers = {
+      'Authorization': `Bearer ${this.$store.state.authToken}`,
+    }
+    let response = await axios.get(this.backendUrl + this.roomSlug + "/info", { headers });
+    this.roomId = response.data.id;
+
+    const client = new Client({
+      brokerURL: 'ws://localhost:8080/ws-api',
+      connectHeaders: {
+        "x-auth-token": this.$store.state.authToken
+      },
+      debug: function (str) {
+        console.log(str);
+      },
+      reconnectDelay: 5000,
+      heartbeatIncoming: 4000,
+      heartbeatOutgoing: 4000,
+    });
+    
+    client.activate();
+    
+    //console.log(client.activate());
+    
+    var callback = function (message) {
+      // called when the client receives a STOMP message from the server
+      if (message.body) {
+        alert('got message with body ' + message.body);
+      } else {
+        alert('got empty message');
+      }
+    };
+    //console.log(client.subscribe('/start/' + this.roomSlug, callback));
+    //console.log('hello');
+    //await setTimeout(() => {client.subscribe('/start/' + this.roomSlug, callback)}, 5000); 
+    headers = { "x-auth-token": this.$store.state.authToken };
+    const roomSlug = this.roomSlug;
+    client.onConnect = function (frame) {
+      // Do something, all subscribes must be done is this callback
+      // This is needed because this will be executed after a (re)connect
+      
+      client.subscribe('/match/' + roomSlug, callback, headers);
+    };
+    //console.log(this.$store.state.justEntered);
     if (this.$store.state.justEntered){
       this.$store.commit("alreadyRated");
       this.nextMovie();

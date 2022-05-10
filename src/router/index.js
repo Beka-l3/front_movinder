@@ -78,6 +78,18 @@ router.beforeEach(async (to) => {
       name: 'Sign In'
     }
   }
+  if (!store.state.waiting && to.name == 'Waiting Room'){
+    if (authorized){
+      return {
+        name: 'Join Room'
+      }
+    }
+    else {
+      return {
+        name: 'Sign In'
+      }
+    }
+  }
 });
 
 export default router;

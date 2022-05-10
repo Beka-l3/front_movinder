@@ -25,7 +25,11 @@ export default {
       }
       let response = await axios.post(this.backendUrl + this.roomSlug + "/join", undefined, { headers });
       console.log(response);
+      this.$store.commit("isJoiner");
+      this.$store.commit("updateRoomSlug", this.roomSlug);
+      this.$store.commit('isWaitingRoom', true);
       this.$router.push("/waiting_room");
+    
     },
   }
 }
