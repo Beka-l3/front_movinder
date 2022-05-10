@@ -99,10 +99,11 @@ export default {
         client.onConnect = function (frame) {
           // Do something, all subscribes must be done is this callback
           // This is needed because this will be executed after a (re)connect
-          
+          console.log(roomStats.data);
+
           client.publish({
             destination: '/match/' + roomSlug,
-            body: 'Matched Film:' + roomStats.data.matchedMovies[matchedMovieIndex],
+            body: 'Matched Film:' + ranking[matchedMovieIndex].movieId,
             headers: { headers },
           });
           client.deactivate();
