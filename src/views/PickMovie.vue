@@ -60,7 +60,55 @@ export default {
         'Authorization': `Bearer ${this.$store.state.authToken}`,
       };
       let response = await axios.post(this.backendUrl + this.roomSlug + "/like", data, { headers });
-      console.log(response);
+      console.log(response);  
+
+      let roomInfo = await axios.get(this.backendUrl + this.roomSlug + '/info', { headers });
+      let usersCount = roomInfo.data.users.length;
+      let roomStats = await axios.get(this.backendUrl + this.roomSlug + "/stats", { headers });
+      let ranking = roomStats.data.ranking;
+      let match = false;
+      let matchedMovieId = 0;
+      let matchedMovieIndex = 0;
+      for (let i = 0; i < ranking.length; ++i){
+        if (ranking[i].likedUsers.length == usersCount){
+          match = true;
+          matchedMovieId = ranking[i].movieId;
+          matchedMovieIndex = i;
+          break;
+        }
+      }
+      if (match == true){
+        const client = new Client({
+          brokerURL: 'ws://localhost:8080/ws-api',
+          connectHeaders: {
+            "x-auth-token": this.$store.state.authToken
+          },
+          debug: function (str) {
+            console.log(str);
+          },
+          reconnectDelay: 5000,
+          heartbeatIncoming: 4000,
+          heartbeatOutgoing: 4000,
+        });
+        
+        client.activate();
+        
+      
+        headers = { "x-auth-token": this.$store.state.authToken };
+        const roomSlug = this.roomSlug;
+        client.onConnect = function (frame) {
+          // Do something, all subscribes must be done is this callback
+          // This is needed because this will be executed after a (re)connect
+          
+          client.publish({
+            destination: '/match/' + roomSlug,
+            body: 'Matched Film:' + roomStats.data.matchedMovies[matchedMovieIndex],
+            headers: { headers },
+          });
+          client.deactivate();
+        };
+      }
+
       this.nextMovie();
     },
     async nextMovie(){
@@ -118,17 +166,15 @@ export default {
       client.subscribe('/match/' + roomSlug, callback, headers);
     };
     //console.log(this.$store.state.justEntered);
+    console.log(this.$store.state.justEntered);
     if (this.$store.state.justEntered){
-      this.$store.commit("alreadyRated");
+      this.$store.commit("enteredBefore", false);
       this.nextMovie();
     }
     else {
       this.curMovie = this.$store.state.curMovie;
     }
-    //if state is now entered
-    //curMovie = getMovie();
-    //if state is currently selecting
-    //curMovie = retrieveFromState()
+   
   },
 }
 

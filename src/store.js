@@ -42,17 +42,11 @@ export const store = new Vuex.Store({
     isWaitingRoom(state, boolean){
       state.waiting = boolean;
     },
-    isCreator(state){
-      state.creator = true;
+    isCreator(state, creator){
+      state.creator = creator;
     },
-    isJoiner(state){
-      state.creator = false;
-    },
-    alreadyRated(state){
-      state.justEntered = false;
-    },
-    justEntered(state){
-      state.justEntered = true;
+    enteredBefore(state, justEntered){
+      state.justEntered = justEntered;
     },
     loggedIn(state){
       state.authorized = true;

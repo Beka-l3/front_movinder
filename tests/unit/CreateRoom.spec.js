@@ -16,6 +16,7 @@ const mockPostData = {
 }
 jest.spyOn(axios, 'post').mockResolvedValue(mockPostData);
 
+
 const mockRoute = {
   params: {
     id: 1
@@ -71,4 +72,33 @@ describe('CreateRoom.vue', () => {
     await expect(mockRouter.push).toHaveBeenCalledTimes(2);
     await expect(mockRouter.push).toHaveBeenCalledWith('/waiting_room');
   });
+
+  /*test('create room method check', async () => {
+    const wrapper = shallowMount(CreateRoom, {
+      global: {
+        plugins: [store],
+        mocks: {
+          $route: mockRoute,
+          $router: mockRouter,
+        }
+      }
+    });
+    //await wrapper.get('button').trigger('click');
+    wrapper.vm.createRoom();
+    //expect(true).toBeTruthy();
+    //expect(axios.post).toHaveBeenCalledTimes(1);
+
+    // let headers = {
+    //   'Authorization': `Bearer ${wrapper.vm.$store.state.authToken}`,
+    // }
+    // expect(axios.post).toHaveBeenCalledWith(wrapper.vm.backendUrl, undefined, { headers });
+    await expect(axios.post).toHaveBeenCalledTimes(3);
+
+    let headers = {
+      'Authorization': `Bearer ${wrapper.vm.$store.state.authToken}`,
+    }
+    await expect(axios.post).toHaveBeenCalledWith(wrapper.vm.backendUrl, undefined, { headers });      
+    await expect(mockRouter.push).toHaveBeenCalledTimes(2);
+    await expect(mockRouter.push).toHaveBeenCalledWith('/waiting_room');
+  });*/
 });

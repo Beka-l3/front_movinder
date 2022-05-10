@@ -1,48 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1652119768049" clover="3.2.0">
-  <project timestamp="1652119768049" name="All files">
-    <metrics statements="22" coveredstatements="4" conditionals="7" coveredconditionals="0" methods="10" coveredmethods="3" elements="39" coveredelements="7" complexity="0" loc="22" ncloc="22" packages="3" files="4" classes="4"/>
+<coverage generated="1652166923291" clover="3.2.0">
+  <project timestamp="1652166923291" name="All files">
+    <metrics statements="22" coveredstatements="14" conditionals="13" coveredconditionals="9" methods="11" coveredmethods="7" elements="46" coveredelements="30" complexity="0" loc="22" ncloc="22" packages="3" files="3" classes="3"/>
     <package name="src">
-      <metrics statements="14" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="3"/>
-      <file name="main.js" path="C:\Users\danat\Desktop\Programming\SQR_S\frontend\sqr_front\src\main.js">
-        <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
-      </file>
+      <metrics statements="10" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="5"/>
       <file name="store.js" path="C:\Users\danat\Desktop\Programming\SQR_S\frontend\sqr_front\src\store.js">
-        <metrics statements="9" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="3"/>
-        <line num="7" count="5" type="stmt"/>
-        <line num="40" count="0" type="stmt"/>
-        <line num="43" count="0" type="stmt"/>
-        <line num="46" count="1" type="stmt"/>
+        <metrics statements="10" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="5"/>
+        <line num="7" count="9" type="stmt"/>
+        <line num="43" count="3" type="stmt"/>
+        <line num="46" count="3" type="stmt"/>
         <line num="49" count="0" type="stmt"/>
         <line num="52" count="1" type="stmt"/>
-        <line num="55" count="2" type="stmt"/>
-        <line num="59" count="0" type="stmt"/>
-        <line num="87" count="0" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="58" count="1" type="stmt"/>
+        <line num="61" count="3" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="93" count="0" type="stmt"/>
       </file>
     </package>
     <package name="src.router">
-      <metrics statements="6" coveredstatements="0" conditionals="7" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <metrics statements="10" coveredstatements="6" conditionals="13" coveredconditionals="9" methods="1" coveredmethods="1"/>
       <file name="index.js" path="C:\Users\danat\Desktop\Programming\SQR_S\frontend\sqr_front\src\router\index.js">
-        <metrics statements="6" coveredstatements="0" conditionals="7" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="14" count="0" type="stmt"/>
-        <line num="69" count="0" type="stmt"/>
-        <line num="74" count="0" type="stmt"/>
-        <line num="75" count="0" type="stmt"/>
-        <line num="76" count="0" type="cond" truecount="0" falsecount="7"/>
+        <metrics statements="10" coveredstatements="6" conditionals="13" coveredconditionals="9" methods="1" coveredmethods="1"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="69" count="2" type="stmt"/>
+        <line num="74" count="2" type="stmt"/>
+        <line num="75" count="2" type="stmt"/>
+        <line num="76" count="2" type="cond" truecount="6" falsecount="1"/>
         <line num="77" count="0" type="stmt"/>
+        <line num="81" count="2" type="cond" truecount="3" falsecount="1"/>
+        <line num="82" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="83" count="0" type="stmt"/>
+        <line num="88" count="0" type="stmt"/>
       </file>
     </package>
     <package name="src.views">
-      <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="Home.vue" path="C:\Users\danat\Desktop\Programming\SQR_S\frontend\sqr_front\src\views\Home.vue">
-        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
       </file>
     </package>
   </project>

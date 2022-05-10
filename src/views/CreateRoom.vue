@@ -28,7 +28,7 @@ export default {
       let response = await axios.post(this.backendUrl, undefined, { headers });
       this.roomSlug = response.data.slug;
       this.$store.commit('updateRoomSlug', this.roomSlug);
-      this.$store.commit('isCreator');
+      this.$store.commit('isCreator', true);
       this.$store.commit('isWaitingRoom', true);
 
       

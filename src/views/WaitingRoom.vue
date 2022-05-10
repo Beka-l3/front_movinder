@@ -35,7 +35,7 @@ export default {
   async mounted(){
     
     this.roomSlug = this.$store.state.roomSlug;
-    this.$store.commit('justEntered');
+    this.$store.commit("enteredBefore", true);
     
     //let StompJs = require('@stomp/stompjs');
     const client = new Client({
